@@ -67,9 +67,9 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
  
-  if(eventType === 'user.created') {
+  if (eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-
+  
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      role:userRole
+      role: userRole  // userRole is included here
     }
 
     const newUser = await createUser(user);
@@ -86,11 +86,10 @@ export async function POST(req: Request) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
-          role:userRole
+          role: userRole
         }
       })
     }
-
     return NextResponse.json({ message: 'OK', user: newUser })
   }
 
