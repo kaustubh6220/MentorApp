@@ -1,48 +1,49 @@
-
-import { Button } from '@/components/ui/button'
-import { SearchParamProps } from '@/types';
-import Image from 'next/image'
-import Link from 'next/link'
-
-export default async function Home({ searchParams }: SearchParamProps) {
-  const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
-
-
-
+// import { UserButton } from "@clerk/nextjs";
+import Image from "next/image"
+ 
+export default function Home() {
   return (
-    <>
-      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
-        <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
-          <div className="flex flex-col justify-center gap-8">
-            <h1 className="h1-bold">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-            <p className="p-regular-20 md:p-regular-24">Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.</p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="#events">
-                Explore Now
-              </Link>
-            </Button>
+    <section className=" flex flex-col items-center">
+      <h1 className=" h1-bold text-center">MIT SCHOOL OF ENGINEERING</h1>
+      <h1 className="h4-medium text-center">Rajbaug, Loni-Kalbhor,Pune</h1>
+      <Image  src={'/assets/itbuilding.jpg'} alt={'itbuilding'} width={750} height={400} style={{
+          margin: "20px",
+        }} />
+        <div className="md:flex gap-5 bg-slate-300  mt-6 ">
+
+
+          <div className="  bg-slate-500  font-semibold text-slate-50 flex flex-col items-center justify-center">
+            <h1 className="md:p-bold-20 ml-10 mr-10">...inspiring</h1> 
+            <h2 className="md:p-bold-20 ml-10 mr-10">journey from</h2> 
+            <h3 className="md:p-bold-20 ml-10 mr-10">knowledge </h3>
+            <h4 className="md:p-bold-20 ml-10 mr-10">to wisdom !!!</h4>
           </div>
 
-          <Image 
-            src="/assets/images/hero.png"
-            alt="hero"
-            width={1000}
-            height={1000}
-            className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
-          />
+
+          <div className=" h-auto mt-5 font-semibold text-slate-50 flex flex-col items-center justify-center ">
+            <Image src={'/assets/design.png'} alt="design" width={200} height={50}/>
+            <h1 className=" text-dark-1">Vision</h1>
+            <h2 className=" text-slate-600">"Our University is in pursuit of</h2>
+            <h3 className=" text-slate-600">Art,Knowledge and Science to</h3> 
+            <h4 className=" text-slate-600">culminate Wisdom"</h4>
+            <h3  className=" text-dark-1">-------------------------------</h3>
+            
+            <h4  className=" text-dark-1">Mission</h4>
+            <ul className="flex flex-col md:items-center max-lg:items-center">
+              <li className=" text-slate-600">Creating global employability</li>
+              <li className=" text-slate-600">Unleashing Potential of Students</li>
+              <li className=" text-slate-600">Building Entrepreneurship</li>
+              <li className=" text-slate-600">Emphasis on Promoting Innovation</li>
+              <li className="mr-10 text-slate-600">Synthesis of Art, Design and </li>
+              <li className="mr-10 text-slate-600">Synthesis of Art, Design and Technology in Academics</li>
+
+            </ul>
+            <Image src={'/assets/design1.png'} alt="design" width={200} height={50} className="mt-4"/>
+
+          </div>
+
+
         </div>
-      </section> 
-
-      <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
-
-        <div className="flex w-full flex-col gap-5 md:flex-row">
-          
-        </div>
-
-      </section>
-    </>
+    </section>
   )
 }

@@ -1,31 +1,44 @@
-'use client';
-
-import { headerLinks } from '@/constants'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
+import { sidebarLinks } from '@/constants'
+import { usePathname, useRouter } from 'next/navigation'
 
-const NavItems = () => {
+interface NavbarProps {
+  userRole: string | undefined;
+}
+
+const NavItems: React.FC<NavbarProps> = ({ userRole }) => {
+  console.log(userRole)
   const pathname = usePathname();
+  const router = useRouter();
+  
 
   return (
-    <ul className="md:flex-between flex w-full flex-col items-start gap-5 md:flex-row">
-      {headerLinks.map((link) => {
-        const isActive = pathname === link.route;
-        
-        return (
-          <li
-            key={link.route}
-            className={`${
-              isActive && 'text-primary-500'
-            } flex-center p-medium-16 whitespace-nowrap`}
-          >
-            <Link href={link.route}>{link.label}</Link>
-          </li>
-        )
-      })}
+    <>
+    <ul className='flex w-full flex-col items-start gap-5'>
+      {sidebarLinks.map((link) => (
+        (link.role === 'admin' && userRole === 'admin') || !link.role ? (
+          <Link key={link.label} href={link.route}>
+            <div className='mr-5 cursor-pointer hover:text-gray-900'>
+              {link.label}
+            </div>
+          </Link>
+        ) : null
+      ))}
     </ul>
-  )
+      <ul className='flex w-full flex-col items-start gap-5'>
+        {sidebarLinks.map((link) => (
+          (link.role === 'mentee' && userRole === 'mentee') || !link.role ? (
+            <Link key={link.label} href={link.route}>
+              <div className='mr-5 cursor-pointer hover:text-gray-900'>
+                {link.label}
+              </div>
+            </Link>
+          ) : null
+        ))}
+      </ul>
+      </>
+  );
 }
 
 export default NavItems
