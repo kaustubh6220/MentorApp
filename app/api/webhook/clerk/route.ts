@@ -6,20 +6,12 @@ import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs';
 
-const { sessionClaims } = auth();
-const role = sessionClaims?.role as string;
-
-let userRole: string;
-
-// Check if the role is admin, classteacher, or mentor
-if (role === 'admin' || role === 'classteacher' || role === 'mentor') {
-  userRole = role;
-} else {
-  userRole = 'mentee';
-}
  
 export async function POST(req: Request) {
-
+  const { sessionClaims } = auth();
+  const role = sessionClaims?.role as string;
+  
+  
  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
@@ -78,7 +70,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      role: userRole  // userRole is included here
+      role: role  // userRole is included here
     }
 
     const newUser = await createUser(user);
@@ -87,7 +79,7 @@ export async function POST(req: Request) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
-          role: userRole
+          role: role
         }
       })
     }
@@ -102,7 +94,7 @@ export async function POST(req: Request) {
       lastName: last_name,
       username: username!,
       photo: image_url,
-      role:userRole
+      role:role
     }
 
     const updatedUser = await updateUser(id, user)
