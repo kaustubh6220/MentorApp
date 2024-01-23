@@ -4,14 +4,8 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
-import { auth } from '@clerk/nextjs';
-
  
 export async function POST(req: Request) {
-  const { sessionClaims } = auth();
-  const role = sessionClaims?.role as string;
-  
-  
  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
@@ -60,9 +54,9 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
  
-  if (eventType === 'user.created') {
+  if(eventType === 'user.created') {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-  
+
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -70,7 +64,6 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      role: role  // userRole is included here
     }
 
     const newUser = await createUser(user);
@@ -78,11 +71,11 @@ export async function POST(req: Request) {
     if(newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
-          userId: newUser._id,
-          role: role
+          userId: newUser._id
         }
       })
     }
+
     return NextResponse.json({ message: 'OK', user: newUser })
   }
 
@@ -94,7 +87,6 @@ export async function POST(req: Request) {
       lastName: last_name,
       username: username!,
       photo: image_url,
-      role:role
     }
 
     const updatedUser = await updateUser(id, user)
