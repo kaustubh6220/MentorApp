@@ -102,6 +102,7 @@ export async function POST(req: Request) {
       lastName: last_name,
       username: username!,
       photo: image_url,
+      role:userRole
     }
 
     const updatedUser = await updateUser(id, user)
