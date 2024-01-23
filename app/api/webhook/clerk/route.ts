@@ -6,19 +6,20 @@ import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs';
 
+const { sessionClaims } = auth();
+const role = sessionClaims?.role as string;
+
+let userRole: string;
+
+// Check if the role is admin, classteacher, or mentor
+if (role === 'admin' || role === 'classteacher' || role === 'mentor') {
+  userRole = role;
+} else {
+  userRole = 'mentee';
+}
  
 export async function POST(req: Request) {
-  const { sessionClaims } = auth();
-  const role = sessionClaims?.role as string;
-  
-  let userRole: string;
 
-  // Check if the role is admin, classteacher, or mentor
-  if (role === 'admin' || role === 'classteacher' || role === 'mentor') {
-    userRole = role;
-  } else {
-    userRole = 'mentee';
-  }
  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
