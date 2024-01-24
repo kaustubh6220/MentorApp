@@ -33,6 +33,26 @@ export async function getUserById(userId: string) {
   }
 }
 
+export async function getUserByClerkId(userId: string) {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ clerkId: userId }).select('_id');
+
+    if (!user) {
+      throw new Error('User with clerkId ' + userId + ' not found');
+    }
+
+    const userIdString = user._id.toString(); // Convert ObjectId to string
+    console.log(userIdString)
+    
+    return JSON.parse(JSON.stringify(userIdString))
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+}
+
 export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
     await connectToDatabase()

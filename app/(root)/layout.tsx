@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { auth, clerkClient } from '@clerk/nextjs';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
+import { getUserByClerkId, getUserById } from '@/lib/actions/user.actions';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -13,9 +14,13 @@ export const metadata = {
   description: 'MIT ADT University Mentor Mentee App',
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
-  const { sessionClaims } = auth();
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const { sessionClaims  } = auth();
   const userId = sessionClaims?.userId as string;
+  console.log(userId)
+
+  const newId = await getUserByClerkId(userId)
+  console.log("new ID",newId)
 
   const fetchAndUpdateUser = async () => {
     try {
@@ -27,7 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         forceUpdate(); // Trigger a re-render without using useState
       } else {
         // If the user has a different role, update metadata to 'mentee'
-        const updatedParams = { publicMetadata: { role: 'mentee' } };
+        const updatedParams = { publicMetadata: { role: 'mentee',_id:newId } };
         await clerkClient.users.updateUser(userId, updatedParams);
         forceUpdate(); // Trigger a re-render without using useState
       }
