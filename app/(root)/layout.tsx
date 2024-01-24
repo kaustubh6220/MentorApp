@@ -19,8 +19,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const userId = sessionClaims?.userId as string;
   console.log(userId)
 
-  const newId = await getUserByClerkId(userId)
-  console.log("new ID",newId)
+  let newId = 'waiting'; // Use let instead of const
+
+  if (userId != null) {
+    newId = await getUserByClerkId(userId);
+    console.log("new ID", newId);
+  }
+    
 
   const fetchAndUpdateUser = async () => {
     try {
