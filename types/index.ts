@@ -6,7 +6,7 @@ export type CreateUserParams = {
     username: string
     email: string
     photo: string
-    dbID:string
+    // dbID:string
     
   }
   
