@@ -7,7 +7,8 @@ import User from '@/lib/database/models/user.model'
 
 import { handleError } from '@/lib/utils'
 
-import { CreateUserParams, UpdateUserParams } from '@/types'
+import { CreateUserParams, ProfileParams, UpdateUserParams } from '@/types'
+import Profile from '../database/models/profile.model'
 
 export async function createUser(user: CreateUserParams) {
   try {
@@ -85,6 +86,57 @@ export async function deleteUser(clerkId: string) {
     revalidatePath('/')
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+export async function createUserProfile(userProfileData: ProfileParams,id:string) {
+  try {
+    await connectToDatabase();
+
+    // Check if a user profile with the provided dbUserId exists
+    const existingProfile = await Profile.findOne({ dbUserId: userProfileData.dbUserId });
+
+    if (existingProfile) {
+      // If the profile exists, update it with the new values
+      const updatedProfile = await Profile.findOneAndUpdate(
+        { _id: id },
+        userProfileData,
+        { new: true }
+      );
+      
+      return updatedProfile;
+    } else {
+      // If the profile doesn't exist, create a new profile
+      const newUserProfile = await Profile.create(userProfileData);
+      return newUserProfile;
+    }
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+export async function getProfile(dbUserId:string){
+  try {
+    await connectToDatabase()
+    
+    const userProfile = await Profile.findOne({ dbUserId:dbUserId });
+    return JSON.parse(JSON.stringify(userProfile))
+  } catch (error) {
+    handleError(error)
+  }
+
+}
+
+
+
+export async function getDbId(clerkId:string){
+  try {
+    await connectToDatabase()
+    
+    const userDatabaseId = await User.findOne({ clerkId });
+    return JSON.parse(JSON.stringify(userDatabaseId))
   } catch (error) {
     handleError(error)
   }

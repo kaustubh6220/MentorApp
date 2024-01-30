@@ -6,13 +6,76 @@ export type CreateUserParams = {
     username: string
     email: string
     photo: string
+    dbID:string
+    
   }
   
   export type UpdateUserParams = {
     firstName: string
     lastName: string
     username: string
-    photo: string
+    photo: string    
+    
+  }
+
+  export type ProfileParams={
+    username:string
+    dbUserId:string
+    full_name : string    
+    year_of_admission: String    
+    class: string    
+    // date_of_birth: Date    
+    birth_place: string    
+    state: string    
+    nationality: string   
+    religion: string    
+    father_name: string    
+    occupation: string    
+    parents_mobile: string   
+    guardian_name: string    
+    address: string    
+    guardian_profession: string    
+    guardian_mobile_number: string    
+    relation: string    
+    annual_income: string    
+    present_address: string    
+    pin_code: String    
+    permanent_address: string
+    mentor_id:string   
+    mentor_name: string    
+    batch:string
+  }
+
+  export type updateProfileParams={
+    dbUserId:string
+    profile : {
+      username:string
+      
+      full_name : string    
+      year_of_admission: number    
+      class: string    
+      // date_of_birth: Date    
+      birth_place: string    
+      state: string    
+      nationality: string   
+      religion: string    
+      father_name: string    
+      occupation: string    
+      parents_mobile: string   
+      guardian_name: string    
+      address: string    
+      guardian_profession: string    
+      guardian_mobile_number: string    
+      relation: string    
+      annual_income: string    
+      present_address: string    
+      pin_code: Number    
+      permanent_address: string
+      mentor_id:string   
+      mentor_name: string    
+      batch:string
+    }
+    path:string
   }
   
   // ====== EVENT PARAMS
