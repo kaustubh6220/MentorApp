@@ -28,7 +28,7 @@ const Profile = ({ dbUserId }: UserProps) => {
         <div>
             {profile && (
                 <div className="ml-10">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-4">
                         <div className="flex flex-col">
                             <div className="flex items-center">
                                 <label className="mr-2">Name :</label>

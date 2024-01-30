@@ -69,6 +69,11 @@ const ProfileForm = ({ dbUserId, username } : UserProps) => {
       // Handle error as needed
     }
   }
+  const handleUpdateClick = () => {
+    
+        window.location.href = '/personalProfile';
+    
+  };
   return (
     <>
     <Form {...form}>
@@ -396,7 +401,7 @@ const ProfileForm = ({ dbUserId, username } : UserProps) => {
           )}
         />
         
-        <Button type="submit">Submit</Button>
+        <Button type="submit" onClick={handleUpdateClick}>Submit</Button>
       </form>
     </Form>
       
