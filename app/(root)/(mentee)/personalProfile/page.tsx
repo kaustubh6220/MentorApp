@@ -5,7 +5,7 @@ import { SearchParamProps } from '@/types'
 import Image from 'next/image';
 import { getProfileById } from '@/lib/actions/profile.actions';
 import { auth, clerkClient } from '@clerk/nextjs';
-import { createUserProfile, getDbId, getProfile } from '@/lib/actions/user.actions';
+import { createUserProfile, getDbId, getProfile, initialCreateProfile } from '@/lib/actions/user.actions';
 import ProfileForm from '@/components/shared/ProfileForm';
 import Profile from '@/components/shared/Profile';
 
@@ -15,10 +15,10 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
   const clerkId = sessionClaims?.userId as string;
   console.log(clerkId)
   const userDatabaseId = await getDbId(clerkId);
-  // const userProfileData = {
-  //   dbUserId: userDatabaseId._id,
-  //   username:userDatabaseId.username
-  // };
+  const userProfileData = {
+    dbUserId: userDatabaseId._id,
+    username:userDatabaseId.username
+  };
   const dbUserId = userDatabaseId._id 
   const username = userDatabaseId.username
   // const profile = await getProfile(dbUserId)
@@ -28,7 +28,7 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
 
 
   // Pass the object to the createUserProfile function
-  // const userProfile = await createUserProfile(userProfileData);
+  const userProfile = await initialCreateProfile(userProfileData);
 
   return (
     <div>

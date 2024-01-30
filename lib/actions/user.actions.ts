@@ -7,7 +7,7 @@ import User from '@/lib/database/models/user.model'
 
 import { handleError } from '@/lib/utils'
 
-import { CreateUserParams, ProfileParams, UpdateUserParams } from '@/types'
+import { CreateUserParams, InitialParams, ProfileParams, UpdateUserParams } from '@/types'
 import Profile from '../database/models/profile.model'
 
 export async function createUser(user: CreateUserParams) {
@@ -91,7 +91,7 @@ export async function deleteUser(clerkId: string) {
   }
 }
 
-export async function createUserProfile(userProfileData: ProfileParams,id:string) {
+export async function initialCreateProfile(userProfileData:InitialParams){
   try {
     await connectToDatabase();
 
@@ -101,7 +101,34 @@ export async function createUserProfile(userProfileData: ProfileParams,id:string
     if (existingProfile) {
       // If the profile exists, update it with the new values
       const updatedProfile = await Profile.findOneAndUpdate(
-        { _id: id },
+        { dbUserId: userProfileData.dbUserId },
+        userProfileData,
+        { new: true }
+      );
+      
+      return updatedProfile;
+    } else {
+      // If the profile doesn't exist, create a new profile
+      const newUserProfile = await Profile.create(userProfileData);
+      return newUserProfile;
+    }
+  } catch (error) {
+    handleError(error);
+  }
+
+}
+
+export async function createUserProfile(userProfileData: ProfileParams) {
+  try {
+    await connectToDatabase();
+
+    // Check if a user profile with the provided dbUserId exists
+    const existingProfile = await Profile.findOne({ dbUserId: userProfileData.dbUserId });
+
+    if (existingProfile) {
+      // If the profile exists, update it with the new values
+      const updatedProfile = await Profile.findOneAndUpdate(
+        { dbUserId: userProfileData.dbUserId },
         userProfileData,
         { new: true }
       );

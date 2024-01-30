@@ -9,6 +9,11 @@ export type CreateUserParams = {
     // dbID:string
     
   }
+
+  export type InitialParams = {
+    dbUserId :string
+    username: string
+  }
   
   export type UpdateUserParams = {
     firstName: string

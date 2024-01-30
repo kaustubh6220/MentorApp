@@ -20,10 +20,9 @@ import { createUserProfile } from "@/lib/actions/user.actions"
 type UserProps = {
     dbUserId: string
     username: string
-    id:string
 }
 
-const ProfileForm = ({ dbUserId, username,id } : UserProps) => {
+const ProfileForm = ({ dbUserId, username } : UserProps) => {
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -63,7 +62,7 @@ const ProfileForm = ({ dbUserId, username,id } : UserProps) => {
       };
 
       // Call createUserProfile function and pass the form data
-      const result = await createUserProfile(userProfileData,id);
+      const result = await createUserProfile(userProfileData);
       console.log("User profile created:", result);
     } catch (error) {
       console.error('Error creating user profile:', error);

@@ -29,7 +29,7 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
 
   return (
     <div>
-      <ProfileForm dbUserId={dbUserId} username={username} id={id} />
+      <ProfileForm dbUserId={dbUserId} username={username}/>
     </div>
   )
 }
