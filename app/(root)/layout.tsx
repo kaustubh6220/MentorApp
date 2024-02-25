@@ -17,7 +17,7 @@ export const metadata = {
 export default async function RootLayout({ children }: RootLayoutProps) {
   const { sessionClaims  } = auth();
   const userId = sessionClaims?.userId as string;
-  console.log(userId)
+  console.log("ghe baba",userId)
 
   let newId = 'waiting'; // Use let instead of const
 

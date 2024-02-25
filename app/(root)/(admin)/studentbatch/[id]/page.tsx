@@ -28,7 +28,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
   const getUserDetails = async () => {
     try {
       // Make a GET request to the backend API route
-      const res = await axios.get<{ data: UserData }>(`/api/users/studentlist/${id}`);
+      const res = await axios.get<{ data: UserData }>(`/api/admin/studentlist/${id}`);
       
 
       // Update state with the received user data
@@ -53,17 +53,17 @@ export default function ProfilePage({params}:{params:{id:string}}) {
             <tr className=" border-slate-600 border-2">
               <th>Name of Student</th>
               <th>Roll Number</th>
-              <th>Mentor</th>
+              <th>Class</th>
 
             </tr>
           </thead>
           <tbody>
           {userData.map((user, index) => (
               <tr key={index}>
-                <td>{user.studentName}</td>
-                <td>{user.studentRollno}</td>
+                <td>{user.full_name}</td>
+                <td>{user.username}</td>
 
-                <td>{user.mentorEmpid}</td>
+                <td>{user.class}</td>
                 
               </tr>
             ))}

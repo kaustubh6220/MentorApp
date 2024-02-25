@@ -22,14 +22,14 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
   const username = userDatabaseId.username
 
   console.log("bhai ye hai id",id)
-
+  // const profile = await getProfileById(id)
 
   // Pass the object to the createUserProfile function
   // const userProfile = await createUserProfile(userProfileData);
 
   return (
     <div>
-      <ProfileForm dbUserId={dbUserId} username={username}/>
+      <ProfileForm dbUserId={dbUserId} username={username} />
     </div>
   )
 }

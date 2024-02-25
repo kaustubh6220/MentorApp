@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 interface UserData {
   map(arg0: (user: any, index: any) => import("react").JSX.Element): import("react").ReactNode;
+  username:string;
   studentName: string;
   studentEnrollmentno: string;
   _id:string;
@@ -53,7 +54,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
   const getUserDetails = async () => {
     try {
       // Make a GET request to the backend API route
-      const res = await axios.get<{ data: UserData }>(`/api/users/studentprof/${id}`);
+      const res = await axios.get<{ data: UserData }>(`/api/admin/studentprof/${id}`);
 
       // Update state with the received user data
       setUserData(res.data.data);
@@ -80,7 +81,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
   return (
     <>
     <button
-        className="head-text w-full p-4 bg-white rounded-sm "
+        className="head-text w-full p-4 bg-slate-200 rounded-sm "
         onClick={toggleProfileVisibility}
       >
         Profile
@@ -105,7 +106,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
                 
             </div>
             <div className="flex items-center">
-                <span className="font-mono">{userData.studentEnrollmentno}</span>
+                <span className="font-mono">{userData.username}</span>
             </div>
 
             <div className="flex items-center">

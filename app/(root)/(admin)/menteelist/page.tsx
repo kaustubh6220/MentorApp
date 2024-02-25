@@ -23,7 +23,7 @@ export default function ProfilePage() {
   const getUserDetails = async () => {
     try {
       // Make a GET request to the backend API route
-      const res = await axios.get<{ data: UserData }>("/api/users/studentlist");
+      const res = await axios.get<{ data: UserData }>("/api/admin/studentlist");
 
       // Update state with the received user data
       setUserData(res.data.data);
@@ -54,10 +54,10 @@ export default function ProfilePage() {
           <tbody>
           {userData.map((user, index) => (
               <tr key={index}>
-                <td>{user.studentName}</td>
-                <td>{user.studentEnrollmentno}</td>
+                <td>{user.full_name}</td>
+                <td>{user.username}</td>
                 <td className="text-sky-500 hover:text-sky-700">
-                  <Link href={`/menteelist/${user.studentEnrollmentno}`}>View Profile</Link>
+                  <Link href={`/menteelist/${user.username}`}>View Profile</Link>
                 </td>
               </tr>
             ))}

@@ -22,7 +22,7 @@ const Header: React.FC<NavbarProps> = ({ userRole }) => {
       // Check user role and redirect if needed
       if (
         (userRole === 'admin' && ['/user'].includes(pathname)) ||
-        (userRole === 'mentee' && ['/admin', '/user','/menteelist', '/mentorlist','/add'].includes(pathname))
+        (userRole === 'mentee' && ['/admin', '/user','/menteelist', '/mentorlist','/add','/editrole'].includes(pathname))
       ) {
         router.push('/');
       } else {

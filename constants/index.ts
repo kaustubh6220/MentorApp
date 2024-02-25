@@ -43,6 +43,12 @@ export const sidebarLinks = [
     label: "Profile",
     role:"admin"
   },
+  {
+    imgURL: "/assets/edit.svg",
+    route: "/editrole",
+    label: "Edit Roles",
+    role:"admin"
+  },
 
   {
     imgURL: "/assets/home.svg",

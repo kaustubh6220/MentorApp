@@ -4,7 +4,7 @@ import Image from "next/image"
 export default function Home() {
   return (
     <section className=" flex flex-col items-center">
-      <h1 className=" h1-bold text-center">MIT SCHOOL OF ENGINEERING</h1>
+      <h1 className=" h1-bold text-center">MIT SCHOOL OF COMPUTING</h1>
       <h1 className="h4-medium text-center">Rajbaug, Loni-Kalbhor,Pune</h1>
       <Image  src={'/assets/itbuilding.jpg'} alt={'itbuilding'} width={750} height={400} style={{
           margin: "20px",

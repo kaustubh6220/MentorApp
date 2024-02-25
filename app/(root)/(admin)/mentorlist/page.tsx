@@ -21,7 +21,7 @@ export default function ProfilePage() {
   const getUserDetails = async () => {
     try {
       // Make a GET request to the backend API route
-      const res = await axios.get<{ data: UserData }>("/api/users/mentorlist");
+      const res = await axios.get<{ data: UserData }>("/api/admin/mentorlist");
 
       // Update state with the received user data
       setUserData(res.data.data);

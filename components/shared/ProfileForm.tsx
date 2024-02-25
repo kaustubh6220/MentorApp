@@ -20,6 +20,7 @@ import { createUserProfile } from "@/lib/actions/user.actions"
 type UserProps = {
     dbUserId: string
     username: string
+    // profile:string
 }
 
 const ProfileForm = ({ dbUserId, username } : UserProps) => {
@@ -63,17 +64,19 @@ const ProfileForm = ({ dbUserId, username } : UserProps) => {
 
       // Call createUserProfile function and pass the form data
       const result = await createUserProfile(userProfileData);
+      window.location.href = '/personalProfile';
+
       console.log("User profile created:", result);
     } catch (error) {
       console.error('Error creating user profile:', error);
       // Handle error as needed
     }
   }
-  const handleUpdateClick = () => {
+  // const handleUpdateClick = () => {
     
-        window.location.href = '/personalProfile';
+  //       window.location.href = '/personalProfile';
     
-  };
+  // };
   return (
     <>
     <Form {...form}>
@@ -401,7 +404,7 @@ const ProfileForm = ({ dbUserId, username } : UserProps) => {
           )}
         />
         
-        <Button type="submit" onClick={handleUpdateClick}>Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
       
