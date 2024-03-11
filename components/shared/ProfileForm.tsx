@@ -16,40 +16,41 @@ import { Input } from "@/components/ui/input"
 import { profileFormSchema } from "@/lib/validator"
 import { z } from "zod"
 import { createUserProfile } from "@/lib/actions/user.actions"
+import { IEvent } from "@/lib/database/models/profile.model"
 
 type UserProps = {
     dbUserId: string
     username: string
-    // profile:string
+    profile?:IEvent
 }
 
-const ProfileForm = ({ dbUserId, username } : UserProps) => {
+const ProfileForm = ({ dbUserId, username,profile} : UserProps) => {
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      username: "",
-      full_name:'',
-      year_of_admission:'',  
-      class: '',       
-      birth_place: '',    
-      state: '',    
-      nationality: '',   
-      religion: '',    
-      father_name: '',    
-      occupation: '',    
-      parents_mobile: '',   
-      guardian_name: '',    
-      address: '',    
-      guardian_profession: '',    
-      guardian_mobile_number: '',    
-      relation: '',    
-      annual_income: '',    
-      present_address: '',    
-      pin_code: '',    
-      permanent_address: '',
-      mentor_id:'',   
-      mentor_name: '',    
-      batch:'',
+      username: profile?.username,
+      full_name:profile?.full_name,
+      year_of_admission:profile?.year_of_admission,  
+      class: profile?.class,       
+      birth_place: profile?.birth_place,    
+      state: profile?.state,    
+      nationality: profile?.nationality,   
+      religion: profile?.religion,    
+      father_name: profile?.father_name,    
+      occupation: profile?.occupation,    
+      parents_mobile: profile?.parents_mobile,   
+      guardian_name: profile?.guardian_name,    
+      address: profile?.address,    
+      guardian_profession: profile?.guardian_profession,    
+      guardian_mobile_number: profile?.guardian_mobile_number,    
+      relation: profile?.relation,    
+      annual_income: profile?.annual_income,    
+      present_address: profile?.present_address,    
+      pin_code: profile?.pin_code,    
+      permanent_address: profile?.permanent_address,
+      mentor_id:profile?.mentor_id,   
+      mentor_name: profile?.mentor_name,    
+      batch:profile?.batch,
     },
   })
  

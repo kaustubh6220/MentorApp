@@ -26,7 +26,21 @@ export async function getProfileById(userId: string) {
     try {
       await connectToDatabase()
   
-      const profile = await populateEvent(Profile.findById(userId))
+      const profile = await populateEvent(Profile.findById({_id:userId}))
+  
+      if (!profile) throw new Error('Profile not found')
+  
+      return JSON.parse(JSON.stringify(profile))
+    } catch (error) {
+      handleError(error)
+    }
+  }
+
+  export async function getProfile(id: string) {
+    try {
+      await connectToDatabase()
+  
+      const profile = await (Profile.findOne({_id:id}))
   
       if (!profile) throw new Error('Profile not found')
   
