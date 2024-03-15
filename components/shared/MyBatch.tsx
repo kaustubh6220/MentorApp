@@ -25,7 +25,7 @@ const MyBatch: React.FC<User> = ({ uniqId }) => {
 
   const getUserDetails = async () => {
     try {
-      const res = await axios.get<{ data: UserData[] }>(`/api/faculty/myBatch/${uniqId}`); // Change this line
+      const res = await axios.get<{ data: UserData[] }>(`localhost:3000/api/faculty/myBatch/${uniqId}`); // Change this line
   
       setUserData(res.data.data);
     } catch (error) {
