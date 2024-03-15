@@ -9,8 +9,7 @@ import toast from "react-hot-toast";
 interface UserData {
   map(arg0: (user: any, index: any) => import("react").JSX.Element): import("react").ReactNode;
   username:string;
-  uniqId:string;
-  fullName: string;
+  studentName: string;
   studentEnrollmentno: string;
   _id:string;
   studentGender:string;
@@ -97,7 +96,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
                 
             </div>
             <div className="flex items-center">
-                <span className="font-mono">{userData.uniqId}</span>
+                <span className="font-mono">{userData.studentEnrollmentno}</span>
             </div>
 
           
@@ -115,7 +114,7 @@ export default function ProfilePage({params}:{params:{id:string}}) {
                 
             </div>
             <div className="flex items-center">
-                <span className="font-mono">{userData.fullName}</span>
+                <span className="font-mono">{userData.studentName}</span>
             </div>
 
             <div className="flex items-center">

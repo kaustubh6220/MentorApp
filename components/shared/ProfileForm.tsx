@@ -29,6 +29,7 @@ const ProfileForm = ({ dbUserId, username,profile} : UserProps) => {
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       username: profile?.username,
+      uniqId:profile?.uniqId,
       full_name:profile?.full_name,
       year_of_admission:profile?.year_of_admission,  
       class: profile?.class,       
@@ -88,6 +89,20 @@ const ProfileForm = ({ dbUserId, username,profile} : UserProps) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="uniqId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Enrollment No : </FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>

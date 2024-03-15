@@ -76,6 +76,30 @@ export const sidebarLinks = [
 
   },
 
+  {
+    imgURL: "/assets/home.svg",
+    route: "classList",
+    label: "Class List",
+    role:"faculty"
+
+  },
+  {
+    imgURL: "/assets/home.svg",
+    route: "myBatch",
+    label: "My Batch",
+    role:"faculty"
+
+  },
+  {
+    imgURL: "/assets/home.svg",
+    route: "facultyProfile",
+    label: "Profile",
+    role:"faculty"
+
+  },
+  
+  
+
 ];
 
 export const profileTabs = [

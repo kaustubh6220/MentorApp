@@ -1,12 +1,13 @@
 import React from 'react'
 
+import { formatDateTime } from '@/lib/utils';
 import { SearchParamProps } from '@/types'
 import Image from 'next/image';
 import { getProfileById } from '@/lib/actions/profile.actions';
 import { auth, clerkClient } from '@clerk/nextjs';
-import { createUserProfile, getDbId, getProfile, initialCreateProfile } from '@/lib/actions/user.actions';
+import { getDbId, getProfile, initialCreateProfile } from '@/lib/actions/user.actions';
 import ProfileForm from '@/components/shared/ProfileForm';
-import Profile from '@/components/shared/Profile';
+import Profile from '@/components/shared/facultyProfile';
 
 
 const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
@@ -26,6 +27,7 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
 
 
 
+  // Pass the object to the createUserProfile function
   const userProfile = await initialCreateProfile(userProfileData);
 
   return (
@@ -36,3 +38,5 @@ const personalProfile = async ({params:{id},searchParams}:SearchParamProps) => {
 }
 
 export default personalProfile
+
+

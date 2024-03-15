@@ -5,6 +5,10 @@ export const profileFormSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
+    uniqId: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+
     full_name: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
@@ -76,6 +80,45 @@ export const profileFormSchema = z.object({
     batch: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
+
+
+  })
+
+
+  export const facultyProfileFormSchema = z.object({
+    username: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    uniqId: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+
+    full_name: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    
+    state: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    nationality: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    religion: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    
+    
+
+    present_address: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    pin_code: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    permanent_address: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+    
 
 
   })

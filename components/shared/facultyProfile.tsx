@@ -20,7 +20,7 @@ const Profile = ({ dbUserId }: UserProps) => {
 
     const handleUpdateClick = () => {
         if (profile) {
-            window.location.href = `personalProfile/${profile._id}/update`;
+            window.location.href = `facultyProfile/${profile._id}/update`;
         }
     };
 
@@ -39,10 +39,6 @@ const Profile = ({ dbUserId }: UserProps) => {
                                 <h1>{profile.username}</h1>
                             </div>
                             <div className="flex items-center">
-                                <label className="mr-2">Enrollment No :</label>
-                                <h1>{profile.uniqId}</h1>
-                            </div>
-                            <div className="flex items-center">
                                 <label className="mr-2">Birth Place :</label>
                                 <h1>{profile.birth_place}</h1>
                             </div>
@@ -50,26 +46,9 @@ const Profile = ({ dbUserId }: UserProps) => {
                                 <label className="mr-2">Nationality :</label>
                                 <h1>{profile.nationality}</h1>
                             </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Father's Name :</label>
-                                <h1>{profile.father_name}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Parents Mobile No :</label>
-                                <h1>{profile.parents_mobile}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Guardian Name :</label>
-                                <h1>{profile.guardian_name}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Guardian Profession :</label>
-                                <h1>{profile.guardian_profession}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Relation :</label>
-                                <h1>{profile.relation}</h1>
-                            </div>
+
+
+
                             <div className="flex items-center">
                                 <label className="mr-2">Present Address :</label>
                                 <h1>{profile.present_address}</h1>
@@ -78,20 +57,15 @@ const Profile = ({ dbUserId }: UserProps) => {
                                 <label className="mr-2">Permanent Address :</label>
                                 <h1>{profile.permanent_address}</h1>
                             </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mentor Name :</label>
-                                <h1>{profile.mentor_name}</h1>
-                            </div>
+
                             {/* Add more fields in the same format */}
                         </div>
                         <div className="flex flex-col">
+
+                            
                             <div className="flex items-center">
-                                <label className="mr-2">Year of Admission :</label>
-                                <h1>{profile.year_of_admission}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Class :</label>
-                                <h1>{profile.class}</h1>
+                                <label className="mr-2">Unique Id :</label>
+                                <h1>{profile.uniqId}</h1>
                             </div>
                             <div className="flex items-center">
                                 <label className="mr-2">State :</label>
@@ -101,34 +75,14 @@ const Profile = ({ dbUserId }: UserProps) => {
                                 <label className="mr-2">Religion :</label>
                                 <h1>{profile.religion}</h1>
                             </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Occupation :</label>
-                                <h1>{profile.occupation}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Address :</label>
-                                <h1>{profile.address}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mobile Number :</label>
-                                <h1>{profile.guardian_mobile_number}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Occupation :</label>
-                                <h1>{profile.occupation}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Annual Income :</label>
-                                <h1>{profile.annual_income}</h1>
-                            </div>
+
+
+
                             <div className="flex items-center">
                                 <label className="mr-2">Pin Code :</label>
                                 <h1>{profile.pin_code}</h1>
                             </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mentor ID :</label>
-                                <h1>{profile.mentor_id}</h1>
-                            </div>
+
                             {/* Add more fields in the same format */}
                         </div>
                     </div>

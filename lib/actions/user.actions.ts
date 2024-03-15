@@ -7,7 +7,7 @@ import User from '@/lib/database/models/user.model'
 
 import { handleError } from '@/lib/utils'
 
-import { CreateUserParams, InitialParams, ProfileParams, UpdateUserParams } from '@/types'
+import { CreateUserParams, FacultyProfileParams, InitialParams, ProfileParams, UpdateUserParams } from '@/types'
 import Profile from '../database/models/profile.model'
 
 export async function createUser(user: CreateUserParams) {
@@ -144,6 +144,33 @@ export async function createUserProfile(userProfileData: ProfileParams) {
   }
 }
 
+
+export async function createFacultyProfile(userProfileData: FacultyProfileParams) {
+  try {
+    await connectToDatabase();
+
+    // Check if a user profile with the provided dbUserId exists
+    const existingProfile = await Profile.findOne({ dbUserId: userProfileData.dbUserId });
+
+    if (existingProfile) {
+      // If the profile exists, update it with the new values
+      const updatedProfile = await Profile.findOneAndUpdate(
+        { dbUserId: userProfileData.dbUserId },
+        userProfileData,
+        { new: true }
+      );
+      
+      return updatedProfile;
+    } else {
+      // If the profile doesn't exist, create a new profile
+      const newUserProfile = await Profile.create(userProfileData);
+      return newUserProfile;
+    }
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 export async function getProfile(dbUserId:string){
   try {
     await connectToDatabase()
@@ -158,6 +185,7 @@ export async function getProfile(dbUserId:string){
 
 
 
+
 export async function getDbId(clerkId:string){
   try {
     await connectToDatabase()
@@ -166,5 +194,26 @@ export async function getDbId(clerkId:string){
     return JSON.parse(JSON.stringify(userDatabaseId))
   } catch (error) {
     handleError(error)
+  }
+}
+
+
+export async function getUniqueId(userId:string) {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findOne({ clerkId: userId }).select('uniqId');
+
+    if (!user) {
+      throw new Error('User with clerkId ' + userId + ' not found');
+    }
+
+    const uniqId = user.uniqId.toString(); // Convert ObjectId to string
+    console.log(uniqId)
+    
+    return JSON.parse(JSON.stringify(uniqId))
+  } catch (error) {
+    handleError(error);
+    throw error;
   }
 }

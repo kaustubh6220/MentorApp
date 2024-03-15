@@ -1,7 +1,7 @@
 import {Document, Schema, model, models } from "mongoose";
 
 export interface IEvent extends Document {
-    _id: string;
+    _id: string ;
     email:string;
     username:string;
     firstname:string;
@@ -30,7 +30,7 @@ export interface IEvent extends Document {
     mentor_id:string,  
     mentor_name: string,  
     batch:string,
-
+    uniqId:string,
     dbUserId: string
   }
 
@@ -63,6 +63,7 @@ const ProfileSchema = new Schema({
   mentor_id:{type:String},  
   mentor_name: {type:String},  
   batch:{type:String},
+  uniqId:{type:String},
   dbUserId: { type:String },
 
 })

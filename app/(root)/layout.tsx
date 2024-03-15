@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { auth, clerkClient } from '@clerk/nextjs';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
-import { getUserByClerkId, getUserById } from '@/lib/actions/user.actions';
+import {getUserByClerkId, getUserById } from '@/lib/actions/user.actions';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -19,11 +19,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const userId = sessionClaims?.userId as string;
   console.log("ghe baba",userId)
 
-  let newId = 'waiting'; // Use let instead of const
+  let newId = 'waiting'; 
 
   if (userId != null) {
     newId = await getUserByClerkId(userId);
     console.log("new ID", newId);
+
   }
     
 
@@ -32,14 +33,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       const user = await clerkClient.users.getUser(userId);
       const role = user.publicMetadata?.role as string;
 
-      if (['admin', 'classteacher', 'mentor'].includes(role)) {
-        // If the user has an admin, classteacher, or mentor role, keep it as it is
-        forceUpdate(); // Trigger a re-render without using useState
+      if (['admin', 'faculty', 'mentor'].includes(role)) {
+        forceUpdate(); 
       } else {
-        // If the user has a different role, update metadata to 'mentee'
-        const updatedParams = { publicMetadata: { role: 'mentee',_id:newId } };
+        const updatedParams = { publicMetadata: { role: 'mentee',_id:newId} };
         await clerkClient.users.updateUser(userId, updatedParams);
-        forceUpdate(); // Trigger a re-render without using useState
+        forceUpdate(); 
       }
     } catch (error) {
       console.error('Error fetching/updating user:', error);
