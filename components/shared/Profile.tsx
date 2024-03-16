@@ -28,113 +28,110 @@ const Profile = ({ dbUserId }: UserProps) => {
         <div>
             {profile && (
                 <div className="ml-10">
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <div className="flex flex-col">
-                            <div className="flex items-center">
-                                <label className="mr-2">Name :</label>
-                                <h1>{profile.full_name}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Username :</label>
-                                <h1>{profile.username}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Enrollment No :</label>
-                                <h1>{profile.uniqId}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Birth Place :</label>
-                                <h1>{profile.birth_place}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Nationality :</label>
-                                <h1>{profile.nationality}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Father's Name :</label>
-                                <h1>{profile.father_name}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Parents Mobile No :</label>
-                                <h1>{profile.parents_mobile}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Guardian Name :</label>
-                                <h1>{profile.guardian_name}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Guardian Profession :</label>
-                                <h1>{profile.guardian_profession}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Relation :</label>
-                                <h1>{profile.relation}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Present Address :</label>
-                                <h1>{profile.present_address}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Permanent Address :</label>
-                                <h1>{profile.permanent_address}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mentor Name :</label>
-                                <h1>{profile.mentor_name}</h1>
-                            </div>
-                            {/* Add more fields in the same format */}
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="flex items-center">
-                                <label className="mr-2">Year of Admission :</label>
-                                <h1>{profile.year_of_admission}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Class :</label>
-                                <h1>{profile.class}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">State :</label>
-                                <h1>{profile.state}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Religion :</label>
-                                <h1>{profile.religion}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Occupation :</label>
-                                <h1>{profile.occupation}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Address :</label>
-                                <h1>{profile.address}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mobile Number :</label>
-                                <h1>{profile.guardian_mobile_number}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Occupation :</label>
-                                <h1>{profile.occupation}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Annual Income :</label>
-                                <h1>{profile.annual_income}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Pin Code :</label>
-                                <h1>{profile.pin_code}</h1>
-                            </div>
-                            <div className="flex items-center">
-                                <label className="mr-2">Mentor ID :</label>
-                                <h1>{profile.mentor_id}</h1>
-                            </div>
-                            {/* Add more fields in the same format */}
-                        </div>
-                    </div>
+                    <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                        <tbody>
+                            <tr style={{ backgroundColor: '#f2f2f2' }}>
+                                <th style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>Field</th>
+                                <th style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>Value</th>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Name</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.full_name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Username</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.username}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Enrollment No</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.uniqId}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Birth Place</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.birth_place}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Nationality</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.nationality}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Father's Name</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.father_name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Parents Mobile No</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.parents_mobile}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Guardian Name</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.guardian_name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Guardian Profession</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.guardian_profession}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Relation</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.relation}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Present Address</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.present_address}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Permanent Address</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.permanent_address}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Mentor Name</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.mentor_name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Year of Admission</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.year_of_admission}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Class</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.class}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>State</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.state}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Religion</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.religion}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Occupation</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.occupation}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Address</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.address}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Mobile Number</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.guardian_mobile_number}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Annual Income</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.annual_income}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Pin Code</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.pin_code}</td>
+                            </tr>
+                            <tr>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left', fontWeight: 'bold' }}>Mentor ID</td>
+                                <td style={{ border: '1px solid #dddddd', padding: '8px 16px', textAlign: 'left' }}>{profile.mentor_id}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             )}
-            <div className="mt-4 ml-10">
+            
+            <div className="mt-4 ml-auto mr-10"> {/* ml-auto to push the button to the right */}
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={handleUpdateClick}
