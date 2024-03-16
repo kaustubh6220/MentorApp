@@ -275,3 +275,9 @@ body {
   background-color: #624cf5 !important;
 }
 
+.animated-text {
+  animation: moveText 2s linear infinite;
+}
+
+
+
