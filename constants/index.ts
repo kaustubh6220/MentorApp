@@ -75,6 +75,13 @@ export const sidebarLinks = [
     role:"mentee"
 
   },
+  {
+    imgURL: "/assets/home.svg",
+    route: "sop",
+    label: "SOP",
+    role:"mentee"
+
+  },
 
   {
     imgURL: "/assets/home.svg",
