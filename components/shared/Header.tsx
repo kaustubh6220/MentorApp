@@ -1,53 +1,36 @@
-"use client";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "../ui/button"
-import NavItems from "./NavItems"
-import MobileNav from "./MobileNav"
-import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+"use client"; // Importing Client Component context
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import NavItems from "./NavItems";
+import MobileNav from "./MobileNav";
+import { usePathname } from "next/navigation"; // Using next/navigation instead of next/router
 
 interface NavbarProps {
   userRole: string | undefined;
 }
 
 const Header: React.FC<NavbarProps> = ({ userRole }) => {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!isLoaded) {
-      // Check user role and redirect if needed
-      if (
-        (userRole === 'admin' && ['/user'].includes(pathname)) ||
-        (userRole === 'mentee' && ['/admin', '/user','/menteelist', '/mentorlist','/add','/editrole'].includes(pathname)) ||
-        (userRole === 'faculty' && ['/admin', '/user','/menteelist', '/mentorlist','/add','/editrole'].includes(pathname))
-
-      ) {
-        router.push('/');
-      } else {
-        setIsLoaded(true);
-      }
-    }
-  }, [pathname, userRole]);
+  const pathname = usePathname(); // Using usePathname from next/navigation
 
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
-        <Link href="/" className="w-36">
-          <Image 
-            src="/assets/images/logo.svg" width={128} height={38}
-            alt="MIT logo" 
-          />
-        </Link>
+        <div className="flex items-center"> {/* Left-aligned content */}
+          <Link href="/" className="w-36">
+            <Image 
+              src="/assets/images/adtulogo.jpeg" 
+              width={108} 
+              height={28}
+              alt="MIT logo" 
+            />
+          </Link>
+        </div>
 
-        {/* <SignedIn>
-          <nav className="md:flex-between hidden w-full max-w-xs">
-            <NavItems />
-          </nav>
-        </SignedIn> */}
+        <div className="flex flex-grow justify-center"> {/* Center content */}
+          <h1 style={{ fontWeight: 'bold',fontSize: '28px' }}>MIT ADT UNIVERSITY MENTOR JUNCTION</h1> {/* Text centered */}
+        </div>
 
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>
@@ -67,4 +50,4 @@ const Header: React.FC<NavbarProps> = ({ userRole }) => {
   )
 }
 
-export default Header
+export default Header;
